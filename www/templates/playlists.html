@@ -1,31 +1,35 @@
-<ion-view view-title="Playlists">
-  <ion-content>
-
-
-
-
-
-    <ion-list>
-
-
-
-
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-
-
-
-        <div class="list">
-          <a class="item item-avatar" href="#/app/playlists/{{playlist.id}}">
-              {{playlist.title}}
-          <img src="venkman.jpg">
-        </a>
-          </div>
-
-
-
-
-      </ion-item>
-    </ion-list>
-  </ion-content>
+<ion-view view-title="playlists">
+    <ion-content ng-class="{expanded:isExpanded}">
+        <div class="content has-header">
+<!--Playlist-->
+            <div class="list animate-fade-slide-in-right">
+                <a href="#/app/profile" class="item item-avatar item-icon-right">
+                    <img src="img/emobulle-jaune.png">
+                    <h2>Emobulle-jaune</h2>
+                    <p>jaune</p>
+                </a>
+                <a href="#/app/profile" class="item item-avatar item-icon-right">
+                    <img src="img/emobulle-bleu.png">
+                    <h2>emobulle-bleu</h2>
+                    <p>bleu</p>
+                </a>
+                <a href="#/app/profile" class="item item-avatar item-icon-right">
+                    <img src="img/emobulle-vert.png">
+                    <h2>emobulle-vert</h2>
+                    <p>vert</p>
+                </a>
+                <a href="#/app/profile" class="item item-avatar item-icon-right">
+                    <img src="img/emobulle-jaune.png">
+                    <h2>emobulle-jaune</h2>
+                    <p>jaune</p>
+                </a>
+                <a href="#/app/profile" class="item item-avatar item-icon-right">
+                    <img src="img/emobulle-rouge.png">
+                    <h2>emobulle-rouge</h2>
+                    <p>rouge</p>
+                </a>
+            </div>
+        </div>
+        <div class="bar bar-footer bar-assertive-900"><div class="ion-skip-backward"></div> <div class="title"><i class="ion-play"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="ion-skip-forward"></i> </div>
+    </ion-content>
 </ion-view>
