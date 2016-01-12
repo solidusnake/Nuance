@@ -30,14 +30,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $ionicConfigProvider.backButton.previousTitleText(false);
     */
 
-    $stateProvider.state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+    $stateProvider.state('app.commencer', {
+        url: '/commencer',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/commencer',
+                controller: 'CommencerCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
     })
 
-    .state('app.activity', {
+
+
+
+
+
+    $stateProvider.state('app.menu', {
+        url: '/menu',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'MenuCtrl'
+    })
+
+    $stateProvider.state('app.activity', {
         url: '/activity',
         views: {
             'menuContent': {
@@ -55,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
-    .state('app.playlists', {
+    $stateProvider.state('app.playlists', {
         url: '/playlists',
         views: {
             'menuContent': {
@@ -73,7 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
-    .state('app.gallery', {
+    $stateProvider.state('app.gallery', {
         url: '/gallery',
         views: {
             'menuContent': {
@@ -91,20 +109,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
-    .state('app.login', {
-        url: '/login',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
-    })
 
-    .state('app.profile', {
+    $stateProvider.state('app.profile', {
         url: '/profile',
         views: {
             'menuContent': {
@@ -124,5 +130,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/login');
+    $urlRouterProvider.otherwise('/app/commencer');
 });

@@ -1,10 +1,11 @@
-
-
+<ion-view view-title="Menu">
+<ion-content>
         <ion-nav-bar class="bar-calm-900" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
-            
+
         </ion-nav-bar>
-       
+
         <ion-nav-view name="menuContent" ng-class="{expanded: isExpanded}" ></ion-nav-view>
+
 
         <style type="">
             .test{
@@ -23,26 +24,44 @@
             }
 
             #bouton{
+                top :80px;
                 display: inline-block;
-                height:100px; 
-                width:100px; 
-                margin-right:auto; 
+                height:100px;
+                width:100px;
+                margin-right:auto;
                 margin-left:auto;
+                border-radius: 15px;
             }
 
         </style>
+
+
+        <ion-side-menu-content>
+
+
         <div id="wrapper">
-        <button id="bouton" class="button button-large button-positive">
+        <button id="bouton" class="button button-large button-positive" ui-sref="app.musique">
             M
         </button>
-        <button id="bouton"  class="button button-large button-positive">
+        <button id="bouton"  class="button button-large button-positive" ui-sref="app.playlists">
             P
         </button>
-        <button id="bouton"  class="button button-large button-positive">
+
+
+
+        <button id="bouton"  class="button button-large button-positive" ui-sref="app.playlists">
+            Emobulle
+        </button>
+
+
+        <button id="bouton"  class="button button-large button-positive" ui-sref="app.playlists">
             B
         </button>
-        <button id="bouton"  class="button button-large button-positive">
+        <button id="bouton"  class="button button-large button-positive" ui-sref="app.boutique">
             P
         </button>
 
         </div>
+</ion-side-menu-content>
+</ion-content>
+</ion-view>
