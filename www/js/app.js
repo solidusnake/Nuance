@@ -30,105 +30,45 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $ionicConfigProvider.backButton.previousTitleText(false);
     */
 
-    $stateProvider.state('app.commencer', {
+
+
+
+
+
+
+    $stateProvider.state('commencer',{
         url: '/commencer',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/commencer',
-                controller: 'CommencerCtrl'
-            },
-            'fabContent': {
-                template: ''
-            }
-        }
+        templateUrl: 'templates/commencer.html'
+    })
+
+    $stateProvider.state('home',{
+        url: '/home',
+        templateUrl: 'templates/home.html'
+    })
+
+    $stateProvider.state('musiques',{
+        url: '/musiques',
+        templateUrl: 'templates/musiques.html'
     })
 
 
 
 
 
-
-    $stateProvider.state('app.menu', {
-        url: '/menu',
-        abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'MenuCtrl'
-    })
-
-    $stateProvider.state('app.activity', {
-        url: '/activity',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/activity.html',
-                controller: 'ActivityCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-activity').classList.toggle('on');
-                    }, 200);
-                }
-            }
-        }
-    })
-
-    $stateProvider.state('app.playlists', {
+    $stateProvider.state('playlists',{
         url: '/playlists',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/playlists.html',
-                controller: 'FriendsCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-friends').classList.toggle('on');
-                    }, 900);
-                }
-            }
-        }
+        templateUrl: 'templates/playlists.html'
     })
 
-    $stateProvider.state('app.gallery', {
-        url: '/gallery',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/gallery.html',
-                controller: 'GalleryCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-energized-900 drop"><i class="icon ion-heart"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-gallery').classList.toggle('on');
-                    }, 600);
-                }
-            }
-        }
+    $stateProvider.state('profil',{
+        url: '/profil',
+        templateUrl: 'templates/profil.html'
     })
 
-
-    $stateProvider.state('app.profile', {
-        url: '/profile',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/profile.html',
-                controller: 'ProfileCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
-                controller: function ($timeout) {
-                    /*$timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);*/
-                }
-            }
-        }
+    $stateProvider.state('boutique',{
+        url: '/boutique',
+        templateUrl: 'templates/boutique.html'
     })
-    ;
 
-    // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/commencer');
+    $urlRouterProvider.otherwise('/commencer')
 });

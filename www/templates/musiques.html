@@ -1,0 +1,91 @@
+<ion-view view-title="Musiques">
+  <div class="bar bar-header bar-assertive">
+    <h1 class="title">bar-assertive</h1>
+  </div>
+    </ion-header-bar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="item item-avatar">
+              <img src="http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/audio_wave.png">
+              <h2>{{audio.title}}                    {{time}}</h2>
+              <p> {{audio.genre}}</p>
+            </div>
+
+
+
+
+
+
+            <div class="item tabs tabs-secondary tabs-icon-left">
+
+              <a class="tab-item" href="#" ng-click="playTrack(audio.track, audio.key)">
+
+                <i class="icon ion-ios-play"></i>
+
+                Play
+              </a>
+
+
+              <a class="tab-item" href="#" ng-click="pauseTrack(audio.key)">
+                <i class="icon ion-android-checkbox-blank"></i>
+                Pause
+              </a>
+
+  <!--    <p>{{$scope.time}}</p>     -->
+
+              <a class="tab-item" href="#" ng-click="audioTracks(audio.track, audio.key)">
+                <i class="icon ion-android-checkbox-blank"></i>
+                next
+              </a>
+
+              <a class="tab-item" href="#" ng-click="loopTrack()">
+                <i class="icon ion-android-checkbox-blank"></i>
+                Loop
+              </a>
+
+              <a class="tab-item" href="#" ng-click="stopTrack(audio.track, audio.key)">
+                <i class="icon ion-android-checkbox-blank"></i>
+                Stop
+              </a>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ICI LES MUSIQUES PTDRRRRRRR
+    </p>
+</ion-content>
+</ion-view>

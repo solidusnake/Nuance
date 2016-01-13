@@ -1,0 +1,54 @@
+<style type="text/css">
+
+table
+    {
+        margin: auto;
+
+    }
+td
+{
+    width: 20%;
+    padding: 2%;
+}
+
+body
+    {
+        margin-top: 5%;
+    }
+</style>
+
+
+<ion-view view-title="Accueil">
+<ion-content class="padding">
+    <p>
+    <table>
+                <tr>
+                    <td align="right"><a ui-sref="musiques"><img src="img/musiques.png" /></a></td><td><a ui-sref="playlists"><img src="img/playlists.png" /></a></td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" align="center"><img src="img/emobulle.png" /></td>
+                </tr>
+
+                <tr>
+                    <td align="right"><a ui-sref="profil"><img src="img/profil.png" /></a></td><td><a ui-sref="boutique"><img src="img/boutique.png" /></a></td>
+                </tr>
+
+
+            </table>
+    </p>
+</ion-content>
+</ion-view>
+
+<ion-tabs class="tabs-assertive">
+
+  <ion-tab  icon="ion-skip-backward">
+  </ion-tab>
+
+  <ion-tab icon="icon ion-play">
+  </ion-tab>
+
+  <ion-tab icon="ion-skip-forward">
+  </ion-tab>
+
+</ion-tabs>
