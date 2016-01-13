@@ -70,5 +70,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         templateUrl: 'templates/boutique.html'
     })
 
+    $stateProvider.state('player',{
+        url: '/player',
+        templateUrl: 'templates/player.html'
+    })
+
+
+
+
     $urlRouterProvider.otherwise('/commencer')
 });
