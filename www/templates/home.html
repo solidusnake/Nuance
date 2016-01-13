@@ -3,10 +3,11 @@
 table
     {
         margin: auto;
-
+        border: solid black 2px;
     }
 td
 {
+  border: solid black 2px;
     width: 20%;
     padding: 2%;
 }
@@ -15,28 +16,32 @@ body
     {
         margin-top: 5%;
     }
+
+    .boxMenu{
+      margin: 10px;
+      background-color: red;
+    }
 </style>
 
 
 <ion-view view-title="Accueil">
-<ion-content class="padding">
-    <p>
-    <table>
-                <tr>
-                    <td align="right"><a ui-sref="musiques"><img src="img/musiques.png" /></a></td><td><a ui-sref="playlists"><img src="img/playlists.png" /></a></td>
-                </tr>
+<ion-content class="padding" style="text-align:center;">
+  <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-top-left-radius:20px;">
+    <img src="" alt="" />
+  </button>
 
-                <tr>
-                    <td colspan="3" align="center"><img src="img/emobulle.png" /></td>
-                </tr>
+  <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-top-right-radius:20px;">
+    <img src="" alt="" />
+  </button>
 
-                <tr>
-                    <td align="right"><a ui-sref="profil"><img src="img/profil.png" /></a></td><td><a ui-sref="boutique"><img src="img/boutique.png" /></a></td>
-                </tr>
+  <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-bottom-left-radius:20px;">
+    <img src="" alt="" />
+  </button>
 
+  <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-bottom-right-radius:20px;">
+    <img src="" alt="" />
+  </button>
 
-            </table>
-    </p>
 </ion-content>
 </ion-view>
 
