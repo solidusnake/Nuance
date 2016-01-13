@@ -1,46 +1,32 @@
 <ion-view view-title="home">
-</ion-header-bar>
 
 <style type="text/css">
-
-table
-    {
-        margin: auto;
-        border: solid black 2px;
-    }
-td
-{
-  border: solid black 2px;
-    width: 20%;
-    padding: 2%;
-}
-
-body
-    {
-        margin-top: 5%;
-    }
-
+  body{
+    background-color: red;
+  }
     .boxMenu{
       margin: 10px;
       background-color: red;
     }
 </style>
+<body>
 
-<ion-content class="padding" style="text-align:center;">
+
+<ion-content class="padding" style="text-align:center; background-color:#ecf0f1;">
   <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-top-left-radius:20px;" ui-sref="playlists">
-
     <img src="" alt="" />
   </button>
 
   <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-top-right-radius:20px;" ui-sref="musiques">
-
-
     <img src="" alt="" />
   </button>
 
+<div style="width:90px; height:90px; border-radius:100%; position:absolute; margin-top:-40px; margin-left: auto;margin-right: auto;left: 0;right: 0; background-color:#ecf0f1; z-index:10;">
+  <img style="width:70px; height:70px; margin-top: 10px;"src="img/emobulle-rouge.png"/>
+</div>
+
+
   <button class="button button-large button-assertive boxMenu" style="width:140px; height:140px; border-bottom-left-radius:20px;" ui-sref="profil">
-
-
     <img src="" alt="" />
   </button>
 
@@ -49,17 +35,5 @@ body
   </button>
 
 </ion-content>
+</body>
 </ion-view>
-
-<ion-tabs class="tabs-assertive">
-
-  <ion-tab  icon="ion-skip-backward">
-  </ion-tab>
-
-  <ion-tab icon="icon ion-play">
-  </ion-tab>
-
-  <ion-tab icon="ion-skip-forward">
-  </ion-tab>
-
-</ion-tabs>
