@@ -41,15 +41,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         templateUrl: 'templates/commencer.html'
     })
 
+
     $stateProvider.state('home',{
         url: '/home',
         templateUrl: 'templates/home.html'
     })
 
-    $stateProvider.state('musiques',{
+    /*$stateProvider.state('musiques',{
         url: '/musiques',
         templateUrl: 'templates/musiques.html'
+         controller: 'AudioController'
+
+    })*/
+
+
+
+
+    $stateProvider.state('musiques', {
+    	url: "/musiques",
+    	views: {
+    		'menuContent' :{
+    			templateUrl: "/templates/musiques.html",
+    			controller: "AudioController"
+    		}
+    	}
     })
+
+
 
 
 
