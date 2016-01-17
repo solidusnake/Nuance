@@ -10,15 +10,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        //if (window.cordova && window.cordova.plugins.Keyboard) {
-          //  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        //}
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
     });
 })
+
+
+
+
+
+
+
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
@@ -32,48 +39,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
 
 
 
-
-
-
-
     $stateProvider.state('commencer',{
         url: '/commencer',
         templateUrl: 'templates/commencer.html'
     })
-
 
     $stateProvider.state('home',{
         url: '/home',
         templateUrl: 'templates/home.html'
     })
 
-    /*$stateProvider.state('musiques',{
-        url: '/musiques',
-        templateUrl: 'templates/musiques.html'
-         controller: 'AudioController'
 
-    })*/
 
 
 
 
     $stateProvider.state('musiques', {
     	url: "/musiques",
-    	views: {
-    		'menuContent' :{
     			templateUrl: "/templates/musiques.html",
 
 
-          controller: "AudioController"
-    		}
-    	}
     })
-
-
-
-
-
-
 
     $stateProvider.state('playlists',{
         url: '/playlists',
@@ -83,12 +69,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     $stateProvider.state('profil',{
         url: '/profil',
         templateUrl: 'templates/profil.html'
+
     })
 
     $stateProvider.state('boutique',{
         url: '/boutique',
         templateUrl: 'templates/boutique.html'
     })
+
 
     $urlRouterProvider.otherwise('/commencer')
 });
