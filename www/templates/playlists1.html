@@ -1,13 +1,13 @@
 <ion-view view-title="Musiques">
-
+<p>feff</p>
 
     <ion-content>
 
+      <button class="button" ng-click="play('/storage/emulated/0/xepher.mp3')">Play from file system</button>
 
 
-      <button class="button button-assertive" ng-click="stopPlayback()">Stop all</button>
+      <button class="button button-assertive" ng-click="play($scope.playTrack)">Stop all</button>
         <ion-audio-track ng-repeat="track in tracks" track="track">
-
 
           <div class="list">
 
