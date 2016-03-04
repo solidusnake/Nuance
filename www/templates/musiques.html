@@ -1,23 +1,41 @@
-<ion-view view-title="Music">
-  <ion-content>
-	  <button class="button button-assertive" ng-click="stopPlayback()">Stop all</button>
-      <ion-audio-track ng-repeat="track in tracks" track="track">
-          <div class="card">
-              <div class="item item-thumbnail-left">
-                  <img src="{{track.art}}">
 
-                  <h2>{{track.title}}</h2>
+<ion-view view-title="Musiques">
 
-                  <p>{{track.artist}}</p>
-                  <ion-audio-controls>
-                      <a class="button button-icon icon" ion-audio-play></a>
-                      <ion-spinner icon="ios" style="position: relative; top: 8px; left: 4px"></ion-spinner>
-                  </ion-audio-controls>
-              </div>
-              <div class="item item-divider">
-                  <ion-audio-progress-bar display-time></ion-audio-progress-bar>
-              </div>
-          </div>
-      </ion-audio-track>
-  </ion-content>
+    <ion-content>
+
+      <div class="list">
+
+          <a class="item item-thumbnail-left" href="#">
+            <img src="cover.jpg">
+            <h2>{{titre}}</h2>
+          </a>
+  </div>
+
+
+<div>
+      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="play()">
+      <i class="icon ion-play"></i>
+    </a>
+</div>
+
+<div>
+      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="pauseAudio()">
+      <i class="icon ion-pause"></i>
+    </a>
+</div>
+
+
+<div>
+      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="sayHello()">
+      <i class="icon ion-pause"></i>
+    </a>
+</div>
+
+
+<button class="button button-positive" ng-click="download()">
+  button-positive
+</button>
+
+
+    </ion-content>
 </ion-view>

@@ -1,214 +1,258 @@
-/* global angular, document, window */
-'use strict';
+angular.module('application').controller("PlaylistsCtrl", function($scope) {
+  $scope.playlists = [
 
-angular.module('starter.controllers', [])
+  { title: 'Playlist1', id: 1 },
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
-    // Form data for the login modal
-    $scope.loginData = {};
-    $scope.isExpanded = false;
-    $scope.hasHeaderFabLeft = false;
-    $scope.hasHeaderFabRight = false;
+  { title: 'Playlist2', id: 2 },
 
-    var navIcons = document.getElementsByClassName('ion-navicon');
-    for (var i = 0; i < navIcons.length; i++) {
-        navIcons.addEventListener('click', function() {
-            this.classList.toggle('active');
-        });
-    }
+  { title: 'Playlist3', id: 3 },
 
-    ////////////////////////////////////////
-    // Layout Methods
-    ////////////////////////////////////////
+  { title: 'Playlist4', id: 4 },
 
-    $scope.hideNavBar = function() {
-        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
-    };
+  { title: 'Playlist5', id: 5 },
 
-    $scope.showNavBar = function() {
-        document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
-    };
+  { title: 'Playlist6', id: 6 }
 
-    $scope.noHeader = function() {
-        var content = document.getElementsByTagName('ion-content');
-        for (var i = 0; i < content.length; i++) {
-            if (content[i].classList.contains('has-header')) {
-                content[i].classList.toggle('has-header');
-            }
-        }
-    };
+  ];
 
-    $scope.setExpanded = function(bool) {
-        $scope.isExpanded = bool;
-    };
-
-    $scope.setHeaderFab = function(location) {
-        var hasHeaderFabLeft = false;
-        var hasHeaderFabRight = false;
-
-        switch (location) {
-            case 'left':
-                hasHeaderFabLeft = true;
-                break;
-            case 'right':
-                hasHeaderFabRight = true;
-                break;
-        }
-
-        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
-        $scope.hasHeaderFabRight = hasHeaderFabRight;
-    };
-
-    $scope.hasHeader = function() {
-        var content = document.getElementsByTagName('ion-content');
-        for (var i = 0; i < content.length; i++) {
-            if (!content[i].classList.contains('has-header')) {
-                content[i].classList.toggle('has-header');
-            }
-        }
-
-    };
-
-    $scope.hideHeader = function() {
-        $scope.hideNavBar();
-        $scope.noHeader();
-    };
-
-    $scope.showHeader = function() {
-        $scope.showNavBar();
-        $scope.hasHeader();
-    };
-
-    $scope.clearFabs = function() {
-        var fabs = document.getElementsByClassName('button-fab');
-        if (fabs.length && fabs.length > 1) {
-            fabs[0].remove();
-        }
-    };
-})
-
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
-    $scope.$parent.clearFabs();
-    $timeout(function() {
-        $scope.$parent.hideHeader();
-    }, 0);
-    ionicMaterialInk.displayEffect();
-})
-
-.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.$parent.setHeaderFab('left');
-
-    // Delay expansion
-    $timeout(function() {
-        $scope.isExpanded = true;
-        $scope.$parent.setExpanded(true);
-    }, 300);
-
-    // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
-})
-
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
-})
-
-.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab('right');
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideIn({
-            selector: '.animate-fade-slide-in .item'
-        });
-    }, 200);
-
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-})
-
-.controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab(false);
-
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-
-    ionicMaterialMotion.pushDown({
-        selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-        selector: '.animate-fade-slide-in .item'
-    });
 });
 
 
 
 
 
-angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+/*angular.module('application').controller('MusicCtrl', function($scope) {
+$scope.tracks = [
+{
+url: 'https://ionic-audio.s3.amazonaws.com/Message%20in%20a%20bottle.mp3', //lien
+artist: 'The Police', //artiste
+title: 'Message in a bottle',
+art: 'https://ionic-audio.s3.amazonaws.com/The_Police_Greatest_Hits.jpg'
+},
+{
+url: '/storage/emulated/0/xepher.mp3',
+artist: 'The Police',
+title: 'Roxane',
+art: 'https://ionic-audio.s3.amazonaws.com/The_Police_Greatest_Hits.jpg'
+}
+];
+$scope.stopPlayback = function() {
+MediaManager.stop();
+};
+});*/
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
+//Variable globale
+var nom_fichier;
+var lien;
+var mp3Folder; //Le dossier musique situé dans la carte sd  (a la a racine)
+var media;
+var playPause = false;
+var couleurPlayer = "royal";
+//Constante
+
+
+
+angular.module('application').controller('MusicCtrl', function($scope,$ionicLoading) { //le module application et le controller musicCtrl
+  $scope.download = function() { //fonction
+
+
+    //le scanner de fichier
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(entry,dirEntry) {
+
+
+      document.addEventListener("deviceready", init, false);
+
+
+
+      mp3Folder = "Music"; //Le dossier musique situé dans la carte sd  (a la a racine)
+      var result;
+
+
+      function init() { //fonction init
+
+
+        window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory + mp3Folder, //on va dans la carte sd
+          function(dir,mediaError) {
+            var reader = dir.createReader();
+            //lire
+
+            reader.readEntries(function(entries) {
+              console.log("readEntries");
+              console.dir(entries);
+
+
+              var tailleTableau = entries.length;
+              console.log("tailleTableau",tailleTableau);
+              var indice = 0;
+              console.log(indice,"indice");
+
+
+
+
+for (var i = 0; i < tailleTableau; i++) {
+  var m1 = new Musique(60,entries[i].name, entries[i].nativeURL,"cédric","nobé");
+
+
+}
+m1.inputBD();
+var m2 = new Musique();
+var m3 = m2.recupBD("m0");
+alert(m3.titre);
+$scope.couleur = couleurPlayer; //couleur du player
+//var pl1 = new Playlist("toto");
+//pl1.creaPlaylist(2,"vide", "vide","vide","vide", "vide", "vide","vide");
+//console.log("pl1",pl1);
+              //le player de fichier
+
+
+              console.log(lien,"lien",nom_fichier,"fichier",indice,"indicedd");
+
+
+              //la methode qui permet de lire le fichier audio (play)
+
+                $scope.play = function() { //fonction play
+                lien =  entries[indice].nativeURL; //le lien du fichier audio dans la carte sd
+
+                media = new Media(lien, null, mediaError);
+media.play();
+                nom_fichier = entries[indice].name; //le nom du fichier audio
+                $scope.titre = nom_fichier;
+
+
+
+
+              }
+
+
+
+
+
+
+
+
+
+
+
+
+
+              $scope.next = function() { //fonction suivant
+
+                media.stop();
+                $scope.play();
+                notification();
+                console.log("next",$scope.next,"indice",indice,"tailleTableau" ,tailleTableau,"nom_fichier",nom_fichier);
+
+
+
+                indice++;
+                if (indice > tailleTableau -1) {
+
+                  indice = 0;
+
+                }
+
+              }
+
+
+
+
+
+
+
+              $scope.previous = function() { //fonction precedent
+                media.pause();
+                $scope.play();
+                notification();
+
+
+                console.log("previous",$scope.previous,"indice",indice,"tailleTableau" ,tailleTableau);
+                indice--;
+
+                if (indice > tailleTableau -1) {
+
+
+
+                  indice = 0;
+                }
+              }
+
+              function notification() {
+                //notification
+                document.addEventListener('deviceready', function () {
+                // Schedule notification for tomorrow to remember about the meeting
+                cordova.plugins.notification.local.schedule({
+
+                  title: "Nuance",
+                  message: nom_fichier,
+                  icon: "http://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_circle_outline_48px-128.png"
+
+                })
+
+              });
+              }
+
+
+
+
+              $scope.liste_music = name;
+              console.log(name);
+
+
+
+
+
+              //le scanner de fichier
+
+              entries.forEach(function(entry,tab) { //on parcours le nombre de ficher
+
+                var name = entry.name;
+                //console.log(name);
+              $scope.nom = name; //affiche la liste des musique dans un scope
+              console.log($scope.nom,'test');
+
+              entry.file(function(file) {
+
+                ID3.loadTags(name,function() {
+                  var tags = ID3.getAllTags(name);
+                  console.log("got tags for "+name, tags);
+                },{
+                  dataReader:FileAPIReader(file)
+                });
+
+              });
+
+
+            });
+
+            });
+}, function(err) {
+});
+
+}
+init();
+download();
 })
+}
+});
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
 
-.controller('MusicCtrl', ['$scope', 'MediaManager', function($scope, MediaManager) {
-    $scope.tracks = [
-        {
-            url: 'https://ionic-audio.s3.amazonaws.com/Message%20in%20a%20bottle.mp3',
-            artist: 'The Police',
-            title: 'Message in a bottle',
-            art: 'https://ionic-audio.s3.amazonaws.com/The_Police_Greatest_Hits.jpg'
-        },
-        {
-            url: 'https://ionic-audio.s3.amazonaws.com/Roxane.mp3',
-            artist: 'The Police',
-            title: 'Roxane',
-            art: 'https://ionic-audio.s3.amazonaws.com/The_Police_Greatest_Hits.jpg'
-        }
-    ];
-    $scope.stopPlayback = function() {
-        MediaManager.stop();
-    };
-}]);
+angular.module('application').controller('BarCtrl', function($cordovaStatusbar) {
+
+  $cordovaStatusbar.overlaysWebView(true);
+
+  // styles: Default : 0, LightContent: 1, BlackTranslucent: 2, BlackOpaque: 3
+  $cordovaStatusbar.style(1);
+
+  // supported names: black, darkGray, lightGray, white, gray, red, green,
+  // blue, cyan, yellow, magenta, orange, purple, brown
+  $cordovaStatusbar.styleColor('white');
+
+  //$cordovaStatusbar.styleHex('#000');
+
+
+  $cordovaStatusbar.show();
+
+  var isVisible = $cordovaStatusbar.isVisible();
+
+});

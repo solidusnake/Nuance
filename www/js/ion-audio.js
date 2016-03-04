@@ -486,4 +486,3 @@ angular.module('ionic-audio').directive('ionAudioControls', function() {
         });
     }
 });
-

@@ -1,11 +1,39 @@
-<ion-view view-title="playlists">
-    <ion-content ng-class="{expanded:isExpanded}">
-        <div class="content has-header">
-</div>
+<ion-view title="Playlists">
+  <script type="text/ng-template" id="/index.html">
+    alert("haha");
+  </script>
 
-            <img ng-src="http://www.gravatar.com/avatar/{{hash}}" alt="Description" />
+  <ion-nav-buttons side="left">
 
 
 
-    </ion-content>
+
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+
+
+    <button class="button button-positive" ng-click="download()">
+      button-positive
+    </button>
+
+<button class="button button-dark" ng-click='ttt()'>
+  test
+</button>
+
+    <p>dsdsdds</p>
+
+    <ion-list>
+
+      <ion-item ng-repeat="playlist in playlists" href="templates/playlists/{{playlist.id}}">
+
+        {{playlist.title}}
+
+
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
 </ion-view>
