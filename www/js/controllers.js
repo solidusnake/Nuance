@@ -89,7 +89,6 @@ angular.module('application').controller('MusicCtrl', function($scope,$ionicLoad
 
 
 
-
 for (var i = 0; i < tailleTableau; i++) {
   var m1 = new Musique(60,entries[i].name, entries[i].nativeURL,"cédric","nobé");
 
