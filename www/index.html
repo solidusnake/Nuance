@@ -13,66 +13,62 @@
     <script src="lib/ngstorage/dist/ngStorage.js"></script>
     <script src="cordova.js"></script>
     <!-- your app's js -->
-
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/test.js"></script>
     <script src="js/Musique.js"></script>
     <script src="js/Playlist.js"></script>
+<<<<<<< HEAD
+    <script src="js/id3-minimized.js"></script>
+=======
 
+<<<<<<< HEAD
 <script src="js/id3-minimized.js"></script>
+=======
+
+>>>>>>> 6d7c8dac446ea7eefcfad21225ca99feee0ad95d
+>>>>>>> origin/master
 </head>
 
 <body ng-app="application" ng-controller="MusicCtrl" ng-controller="BarCtrl">
-
-
-
-
-
   <ion-nav-bar class="bar-assertive">
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
 
+  <ion-nav-view ></ion-nav-view>
+  <div class="bar bar-footer bar-dark" style="position:static;">
+  <h1 class="title">bar-dark</h1>
+  <h1 style="color:red;font-size:15px; display:block;">Titre-Titre de la musique</h1>
+  <p style="color:red;font-size:12px; display:block;">Artiste</p>
+  <br/>
 
-
+</div>
 <div class="tabs-{{couleur}}">
 
-      <div class="tabs" style="height:100px;">
+  <div class="tabs" style="height:100px; background-color:black;">
 
-  <button on-swipe-up="onSwipeUp()" class="button" ui-sref="player"></button>
+      <button on-swipe-up="onSwipeUp()" style="height:60px;" class="button" ui-sref="player"></button>
 
-          <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="previous()">
-          <i class="ion-skip-backward"></i>
-        </a>
-        <a style="font-size: 38px; margin-top:20px;" class="tab-item">
-
-
-          <i class="icon ion-play" ng-click="play()" ng-hide="isPlaying"></i>
-
-
-
-        </a>
-
-        <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="next()">
-          <i class="ion-skip-forward"></i>
-
-        </a>
-
-        <a style="font-size: 10px; margin-top:65px;"><p>{{titre}}</p>
+      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="next()">
+        <img src="img/emobulle-rouge.png" style="width:50px; height:50px; background-color:red;" alt="" />
       </a>
 
-      </div>
+        <a style="font-size: 30px; margin-top:20px;" class="tab-item" ng-click="previous()">
+          <i class="ion-skip-backward assertive"></i>
+        </a>
 
+        <a style="font-size: 30px; margin-top:20px;" class="tab-item">
+          <i class="icon ion-play assertive" ng-click="play()" ng-hide="isPlaying"></i>
+        </a>
 
-  </div>
+        <a style="font-size: 30px; margin-top:20px;" class="tab-item" ng-click="next()">
+          <i class="ion-skip-forward assertive"></i>
+        </a>
 
-
-
-
-
-
-    <ion-nav-view ></ion-nav-view>
-
-
+        <a style="margin-top:20px;" class="tab-item">
+          <img src="img/emobulle-rouge.png" style="width:50px; height:50px;" alt="" />
+        </a>
+    </div>
+</div>
 </body>
 </html>
