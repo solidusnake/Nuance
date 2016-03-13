@@ -22,25 +22,7 @@ angular.module('application').controller("PlaylistsCtrl", function($scope) {
 
 
 
-/*angular.module('application').controller('MusicCtrl', function($scope) {
-$scope.tracks = [
-{
-url: 'https://ionic-audio.s3.amazonaws.com/Message%20in%20a%20bottle.mp3', //lien
-artist: 'The Police', //artiste
-title: 'Message in a bottle',
-art: 'https://ionic-audio.s3.amazonaws.com/The_Police_Greatest_Hits.jpg'
-},
-{
-url: '/storage/emulated/0/xepher.mp3',
-artist: 'The Police',
-title: 'Roxane',
-art: 'https://ionic-audio.s3.amazonaws.com/The_Police_Greatest_Hits.jpg'
-}
-];
-$scope.stopPlayback = function() {
-MediaManager.stop();
-};
-});*/
+
 
 //Variable globale
 var nom_fichier; // variable contenant le nom du fichier avec l'extention
@@ -50,15 +32,14 @@ var media; //l'objet media qui permet de lire la musique
 var mediaTimer = null;
 var playPause = false;
 var couleurPlayer = "royal"; //la
+var entries;
 //Constante
 
 
 
 angular.module('application').controller('MusicCtrl', function($scope,$ionicLoading) { //le module application et le controller musicCtrl
-  $scope.download = function() { //fonction
 
-    //le scanner de fichier
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(entry,dirEntry) {
+
 
 
       document.addEventListener("deviceready", init, false);
@@ -120,6 +101,7 @@ console.log("pl1",pl1);
 media.play();
 
 
+
             // Update my_media position every second
             if (mediaTimer == null) {
                 mediaTimer = setInterval(function() {
@@ -141,11 +123,14 @@ media.play();
                     );
                 }, 1000);
             }
-$scope.listemusique = entries; //liste les musiques
 
 
 
+function affichelistemusique() {
+            $scope.listemusique = entries; //liste les musiques
 
+          }
+    affichelistemusique();
 
 
 
@@ -218,35 +203,24 @@ $scope.listemusique = entries; //liste les musiques
 
 
 
-              //le scanner de fichier
-
-              entries.forEach(function(entry,tab) { //on parcours le nombre de ficher
-                var name = entry.name;
-                //console.log(name);
 
 
-              entry.file(function(file) {
-
-                ID3.loadTags(name,function() {
-                  var tags = ID3.getAllTags(name);
-                  console.log("got tags for "+name, tags);
-                },{
-                  dataReader:FileAPIReader(file)
-                });
-
-              });
 
 
             });
-
-            });
-}, function(err) {
 });
+
+
+
+
 }
-init();
+
+
+
+
 })
-}
-});
+
+
 
 
 angular.module('application').controller('BarCtrl', function($cordovaStatusbar) {
