@@ -43,19 +43,19 @@ MediaManager.stop();
 });*/
 
 //Variable globale
-var nom_fichier;
-var lien;
+var nom_fichier; // variable contenant le nom du fichier avec l'extention
+var lien; //le chemin d'accees du fichier android
 var mp3Folder; //Le dossier musique situé dans la carte sd  (a la a racine)
-var media;
+var media; //l'objet media qui permet de lire la musique
+var mediaTimer = null;
 var playPause = false;
-var couleurPlayer = "royal";
+var couleurPlayer = "royal"; //la
 //Constante
 
 
 
 angular.module('application').controller('MusicCtrl', function($scope,$ionicLoading) { //le module application et le controller musicCtrl
   $scope.download = function() { //fonction
-
 
     //le scanner de fichier
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(entry,dirEntry) {
@@ -95,14 +95,16 @@ for (var i = 0; i < tailleTableau; i++) {
 
 
 }
+
+
 m1.inputBD();
 var m2 = new Musique();
 var m3 = m2.recupBD("m0");
 alert(m3.titre);
 $scope.couleur = couleurPlayer; //couleur du player
-//var pl1 = new Playlist("toto");
-//pl1.creaPlaylist(2,"vide", "vide","vide","vide", "vide", "vide","vide");
-//console.log("pl1",pl1);
+var pl1 = new Playlist("toto");
+//pl1.creaPlaylist(1,"vide", "vide","vide","vide", "vide", "vide","vide");
+console.log("pl1",pl1);
               //le player de fichier
 
 
@@ -115,27 +117,47 @@ $scope.couleur = couleurPlayer; //couleur du player
                 lien =  entries[indice].nativeURL; //le lien du fichier audio dans la carte sd
 
                 media = new Media(lien, null, mediaError);
+//play audio
 media.play();
-                nom_fichier = entries[indice].name; //le nom du fichier audio
-                $scope.titre = nom_fichier;
 
+
+            // Update my_media position every second
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    // get my_media position
+                    media.getCurrentPosition(
+
+                        // success callback
+                        function(position) {
+                            if (position > -1) {
+                              console.log(position,mediaTimer);
+                              setAudioPosition((position) + " sec");
+                            }
+                        },
+                        // error callback
+                        function(e) {
+                            console.log("Error getting pos=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+$scope.listemusique = entries; //liste les musiques
+
+
+
+
+
+
+
+
+
+          nom_fichier = entries[indice].name; //le nom du fichier audio
+          $scope.titre = nom_fichier; //copie le contenue de la variable nom_fichier dans un scope qui a pour nom titre
 
 
 
               }
-
-
-
-
-
-
-
-
-
-
-
-
-
               $scope.next = function() { //fonction suivant
 
                 media.stop();
@@ -146,7 +168,7 @@ media.play();
 
 
                 indice++;
-                if (indice > tailleTableau -1) {
+                if (indice > tailleTableau +1) {
 
                   indice = 0;
 
@@ -177,7 +199,7 @@ media.play();
                 }
               }
 
-              function notification() {
+              function notification() { //fonction qui lance une notification a chaque musique
                 //notification
                 document.addEventListener('deviceready', function () {
                 // Schedule notification for tomorrow to remember about the meeting
@@ -185,8 +207,7 @@ media.play();
 
                   title: "Nuance",
                   message: nom_fichier,
-                  icon: "http://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_circle_outline_48px-128.png"
-
+                  icon: 'http://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_circle_outline_48px-128.png',
                 })
 
               });
@@ -195,21 +216,15 @@ media.play();
 
 
 
-              $scope.liste_music = name;
-              console.log(name);
-
-
 
 
 
               //le scanner de fichier
 
               entries.forEach(function(entry,tab) { //on parcours le nombre de ficher
-
                 var name = entry.name;
                 //console.log(name);
-              $scope.nom = name; //affiche la liste des musique dans un scope
-              console.log($scope.nom,'test');
+
 
               entry.file(function(file) {
 
@@ -228,10 +243,8 @@ media.play();
             });
 }, function(err) {
 });
-
 }
 init();
-download();
 })
 }
 });
