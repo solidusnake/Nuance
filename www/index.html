@@ -18,46 +18,36 @@
     <script src="js/test.js"></script>
     <script src="js/Musique.js"></script>
     <script src="js/Playlist.js"></script>
-<<<<<<< HEAD
     <script src="js/id3-minimized.js"></script>
-=======
 
-<<<<<<< HEAD
-<script src="js/id3-minimized.js"></script>
-=======
-
->>>>>>> 6d7c8dac446ea7eefcfad21225ca99feee0ad95d
->>>>>>> origin/master
 </head>
 
 <body ng-app="application" ng-controller="MusicCtrl" ng-controller="BarCtrl">
-  <ion-nav-bar class="bar-assertive">
+
+  <ion-nav-bar class="bar-assertive" style="height:300px;">
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
 
-  <ion-nav-view ></ion-nav-view>
-  <div class="bar bar-footer bar-dark" style="position:static;">
-  <h1 class="title">bar-dark</h1>
-  <h1 style="color:red;font-size:15px; display:block;">Titre-Titre de la musique</h1>
-  <p style="color:red;font-size:12px; display:block;">Artiste</p>
-  <br/>
 
-</div>
+  <ion-nav-view ></ion-nav-view>
+
 <div class="tabs-{{couleur}}">
 
   <div class="tabs" style="height:100px; background-color:#222222">
     <p style="left:80px;font-family:roboto;top:-10px;position:absolute;color:white">Père Jérome </p>
+    <p style="top:-10x;font-family:roboto;right:80px;position:absolute;color:grey">00:00</p>
     <p style="top:10px;font-family:roboto;left:80px;position:absolute;color:grey">Cédric Porcher</p>
+
     <img style="width:40px; height:40px;right:20px;top:40px;position:absolute; "src="img/emobulle-rouge.png"/></img>
 
-    <svg-image on-swipe-up="onSwipeUp()" src="img/elements v2/playlist.svg" style="position:absolute;left:15px;top:20px;height:60px;height:60px;width:60px;" ui-sref="player">
-    </svg-image>
+    <object on-swipe-up="onSwipeUp()" type="image/svg+xml" style="position:absolute;left:20px;top:40px;height:40px;background-color: #E6312F; -webkit-mask-repeat:no-repeat;-webkit-mask-image: url(img/elementsv2/playlist.svg);"  width="60" height="60">
+    </object>
 
-      <i onclick="melange();"style="left:90px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-ios-shuffle-strong"></i>
-      <i onclick="arriere();"style="left:130px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-skip-backward"></i>
-      <i onclick="play();"style="left:170px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="icon ion-play"></i>
-      <i onclick="avant();"style="left:210px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-skip-forward"></i>
-      <i onclick="repeat();"style="left:250px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-ios-loop-strong"></i>
+      <i onclick="melange();"style="left:90px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-ios-shuffle-strong"></i>
+      <i onclick="arriere();"style="left:130px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-skip-backward"></i>
+      <i onclick="play();"style="left:170px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="icon ion-play"></i>
+      <i onclick="avant();"style="left:210px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-skip-forward"></i>
+      <i onclick="repeat();"style="left:250px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-ios-loop-strong"></i>
 
   </div>
 </body>
