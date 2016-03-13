@@ -94,5 +94,5 @@ $stateProvider.state('setting', {
 })
 
 
-    $urlRouterProvider.otherwise('/commencer')
+    $urlRouterProvider.otherwise('/home')
 });

@@ -41,30 +41,20 @@
 </div>
 <div class="tabs-{{couleur}}">
 
-  <div class="tabs" style="height:100px; background-color:black;">
+  <div class="tabs" style="height:100px; background-color:#222222">
+    <p style="left:80px;font-family:roboto;top:-10px;position:absolute;color:white">Père Jérome </p>
+    <p style="top:10px;font-family:roboto;left:80px;position:absolute;color:grey">Cédric Porcher</p>
+    <img style="width:40px; height:40px;right:20px;top:40px;position:absolute; "src="img/emobulle-rouge.png"/></img>
 
-      <button on-swipe-up="onSwipeUp()" style="height:60px;" class="button" ui-sref="player"></button>
+    <svg-image on-swipe-up="onSwipeUp()" src="img/elements v2/playlist.svg" style="position:absolute;left:15px;top:20px;height:60px;height:60px;width:60px;" ui-sref="player">
+    </svg-image>
 
-      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="next()">
-        <img src="img/emobulle-rouge.png" style="width:50px; height:50px; background-color:red;" alt="" />
-      </a>
+      <i onclick="melange();"style="left:90px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-ios-shuffle-strong"></i>
+      <i onclick="arriere();"style="left:130px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-skip-backward"></i>
+      <i onclick="play();"style="left:170px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="icon ion-play"></i>
+      <i onclick="avant();"style="left:210px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-skip-forward"></i>
+      <i onclick="repeat();"style="left:250px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#8E2525" class="ion-ios-loop-strong"></i>
 
-        <a style="font-size: 30px; margin-top:20px;" class="tab-item" ng-click="previous()">
-          <i class="ion-skip-backward assertive"></i>
-        </a>
-
-        <a style="font-size: 30px; margin-top:20px;" class="tab-item">
-          <i class="icon ion-play assertive" ng-click="play()" ng-hide="isPlaying"></i>
-        </a>
-
-        <a style="font-size: 30px; margin-top:20px;" class="tab-item" ng-click="next()">
-          <i class="ion-skip-forward assertive"></i>
-        </a>
-
-        <a style="margin-top:20px;" class="tab-item">
-          <img src="img/emobulle-rouge.png" style="width:50px; height:50px;" alt="" />
-        </a>
-    </div>
-</div>
+  </div>
 </body>
 </html>
