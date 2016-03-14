@@ -1,0 +1,47 @@
+<ion-view view-title="player" class="Musiques">
+<ion-nav-bar class="bar-{{couleur}}"></ion-nav-bar>
+
+    <ion-content>
+
+
+
+
+<div class="list card">
+
+  <div class="item item-avatar">
+    <img src="avatar.jpg">
+    <h2>{{titre}}</h2>
+    <p>{{titre}}</p>
+
+  </div>
+
+  <div class="item item-image">
+    <img src="img/icones/2u75z45.jpg">
+  </div>
+
+
+
+
+
+
+  <a class="item item-icon-left assertive" href="#">
+    <i class="icon ion-music-note"></i>
+    Start listening
+  </a>
+</div>
+<ion-list>
+
+  <ion-item ng-repeat="playlist in playlists" href="templates/playlists/{{playlist.id}}">
+
+    {{playlist.title}}
+
+  </ion-item>
+
+</ion-list>
+
+
+
+    </ion-content>
+
+
+</ion-view>
