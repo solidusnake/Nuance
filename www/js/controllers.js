@@ -82,9 +82,9 @@ var m2 = new Musique();
 var m3 = m2.recupBD("m0");
 alert(m3.titre);
 $scope.couleur = couleurPlayer; //couleur du player
-var pl1 = new Playlist("toto");
+//var pl1 = new Playlist("toto");
 //pl1.creaPlaylist(1,"vide", "vide","vide","vide", "vide", "vide","vide");
-console.log("pl1",pl1);
+//console.log("pl1",pl1);
               //le player de fichier
 
 
@@ -160,12 +160,6 @@ function affichelistemusique() {
 
               }
 
-
-
-
-
-
-
               $scope.previous = function() { //fonction precedent
                 media.pause();
                 $scope.play();
@@ -218,7 +212,7 @@ function affichelistemusique() {
 
 
 
-})
+});
 
 
 
