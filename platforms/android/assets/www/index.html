@@ -19,12 +19,11 @@
     <script src="js/Musique.js"></script>
     <script src="js/Playlist.js"></script>
     <script src="js/id3-minimized.js"></script>
-
+    <script src="lib/jquery/jquery.js"></script>
 
 </head>
 
 <body ng-app="application" ng-controller="MusicCtrl" ng-controller="BarCtrl" class="platform-android platform-cordova platform-webview">
-
   <ion-nav-bar class="bar-assertive" style="height:300px;">
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
@@ -35,21 +34,21 @@
 <div class="tabs-{{couleur}}">
 
   <div class="tabs" style="height:100px; background-color:#222222">
-    <p style="left:80px;font-family:roboto;top:-10px;position:absolute;color:white">Père Jérome </p>
-    <p style="top:-10x;font-family:roboto;right:80px;position:absolute;color:grey">00:00</p>
-    <p style="top:10px;font-family:roboto;left:80px;position:absolute;color:grey">Cédric Porcher</p>
+    <p id="titre" style="left:20px;font-family:roboto;top:-10px;position:absolute;color:white"> </p>
+    <p id="auteur" style="top:30x;font-family:roboto;right:80px;position:absolute;color:grey"></p>
+    <p id="time" style="top:10px;font-family:roboto;left:80px;position:absolute;color:grey"></p>
 
-    <img style="width:40px; height:40px;right:20px;top:40px;position:absolute; "src="img/emobulle-rouge.png"/></img>
+    <img id="emo" style="width:40px; height:40px;right:20px;top:40px;position:absolute; " src="img/PNG/vide.png"/></img>
 
-    <object on-swipe-up="onSwipeUp()" type="image/svg+xml" style="position:absolute;left:20px;top:40px;height:40px;background-color: #E6312F; -webkit-mask-repeat:no-repeat;-webkit-mask-image: url(img/elementsv2/playlist.svg);"  width="60" height="60">
+    <object on-swipe-up="onSwipeUp()" type="image/svg+xml" style="display:none;position:absolute;left:20px;top:40px;height:40px;background-color: #E6312F; -webkit-mask-repeat:no-repeat;-webkit-mask-image: url(img/elementsv2/playlist.svg);"  width="60" height="60">
     </object>
 
-      <i ng-click="melange();"style="left:90px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-ios-shuffle-strong"></i>
-      <i ng-click="arriere();"style="left:130px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-skip-backward"></i>
-      <i ng-click="play();"style="left:170px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="icon ion-play"></i>
-      <i ng-click="avant();"style="left:210px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-skip-forward"></i>
-      <i ng-click="repeat();"style="left:250px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#E6312F" class="ion-ios-loop-strong"></i>
-      
+      <i ng-click="melange();"style="left:90px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#101010" class="ion-ios-shuffle-strong"></i>
+      <i ng-click="previous();"style="left:130px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#101010" class="ion-skip-backward"></i>
+      <i ng-click="playpause();" id="playpause" style="left:170px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#101010" class="icon ion-play"></i>
+      <i ng-click="next();"style="left:210px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#101010" class="ion-skip-forward"></i>
+      <i ng-click="repeat();"style="left:250px;position:absolute;width:25px;height:25px;font-size: 25px; margin-top:40px;color:#101010" class="ion-ios-loop-strong"></i>
+
   </div>
 </body>
 </html>

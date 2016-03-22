@@ -50,7 +50,7 @@ angular.module('application', ['ionic','ngCordova',])
     $stateProvider.state('musiques', {
     	url: "/musiques",
     			templateUrl: "templates/musiques.html",
-          //controller:"MusicCtrl",
+          controller:"emobulles",
     })
 
     $stateProvider.state('browser', {
@@ -77,7 +77,6 @@ angular.module('application', ['ionic','ngCordova',])
     $stateProvider.state('playlists', {
     url: "/playlists",
     templateUrl: "templates/playlists.html",
-    controller:"PlaylistsCtrl",
   })
 
 

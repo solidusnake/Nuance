@@ -1,57 +1,34 @@
 
-<ion-view view-title="Musiques">
-
+<ion-view view-title="Musiques"><!-- La vue -->
     <ion-content>
-
-      <div class="list">
-
-          <a class="item item-thumbnail-left" href="#">
-            <img src="cover.jpg">
-            <h2>{{titre}}</h2>
-            <p>{{nom}}</p>
-          </a>
-  </div>
-<i class="icon ion-play" ng-click="play()"></i>
-<!--
-<div>
-      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="play()">
-      <i class="icon ion-play"></i>
-    </a>
-</div>
-
-<div>
-      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="pauseAudio()">
-      <i class="icon ion-pause"></i>
-    </a>
-</div>
-
-
-<div>
-      <a style="font-size: 38px; margin-top:20px;" class="tab-item" ng-click="sayHello()">
-      <i class="icon ion-pause"></i>
-    </a>
-</div>
-
-
-
-
--->
-<div class="list">
-
-        <a ng-repeat="item in listemusique" href="#/{{item.id}}" class="item item-thumbnail-left">
-          <img ng-src="{{ item.image }}">
-          <h2>{{ item.name }}</h2>
-          <h4>{{ item.name }}</h4>
+        <a ng-repeat="item in listemusique track by $index" class="item item-thumbnail-left">
+          <!-- ng-repeat est une boucle qui tourne autant de fois qu'il y a de valeurs
+          dans le $scope listemusique contenant toutes les musiques de l'utilisateur-->
+          <img id="{{item.id}}" ng-click="jouer('{{item.id}}')" ng-src="img/PNG/{{item.emobulle}}.png"/>
+          <!--item représente la musique analysée, on met un évènement ng-click pour appeler une fonction
+          $scope "play", qui va jouer la musique. Les doubles accolades {{}} sont une spécificité d'Angular et
+          permettent d'afficher des informations, en l'occurence ici, on affiche les attributs des musiques-->
+          <h2 ng-click="jouer('{{item.id}}')"> {{ item.titre }}</h2> <!-- on affiche le titre propre à la musique -->
+          <h4 ng-click="jouer('{{item.id}}')">{{ item.artiste }}</h4> <!-- on affiche l'artiste propre à la musique -->
+          <label style="border: none;" name="Emobulle" class="item item-select">
+              <select id="options" ng-change="changeEmo('{{item.id}}',myValue)" ng-model="myValue">
+              <!-- Ici, l'utiisateur va pouvoir choisir quelle teinte émotionnelle accorder à sa musique entre
+              10 émotions définie dans la planche d'émobulles. Lorsqu'il clique sur une des option ci-dessous,
+              l'émobulle attachée à la musique va donc changer grâce à la méthode changeEmo qui prend en argument
+              la valeur de l'option choisie ainsi que l'id de la musique, pour pouvoir la changer dans le localstorage.-->
+                  <option selected>{{item.emobulle}}</option><!-- on affiche l'émobulle propre à la musique -->
+                  <option value="calme">Calme</option>
+                  <option value="colere">Colère</option>
+                  <option value="energie">Energie</option>
+                  <option value="espoir">Espoir</option>
+                  <option value="joie">Joie</option>
+                  <option value="melancolie">Mélancolie</option>
+                  <option value="passion">Passion</option>
+                  <option value="reve">Rêve</option>
+                  <option value="tendresse">Tendresse</option>
+                  <option value="tristesse">Tristesse</option>
+              </select>
+          </label>
         </a>
-
-      </div>
-
-
-
-      <button class="button button-positive" ng-click="play()">
-        button-positive
-      </button>
-
-
     </ion-content>
 </ion-view>

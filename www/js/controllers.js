@@ -1,238 +1,199 @@
-angular.module('application').controller("PlaylistsCtrl", function($scope) {
-  $scope.playlists = [
-
-  { title: 'Playlist1', id: 1 },
-
-  { title: 'Playlist2', id: 2 },
-
-  { title: 'Playlist3', id: 3 },
-
-  { title: 'Playlist4', id: 4 },
-
-  { title: 'Playlist5', id: 5 },
-
-  { title: 'Playlist6', id: 6 }
-
-  ];
-
-});
-
-
-
-
-
-
-
-
-//Variable globale
-var nom_fichier; // variable contenant le nom du fichier avec l'extention
-var lien; //le chemin d'accees du fichier android
-var mp3Folder; //Le dossier musique situé dans la carte sd  (a la a racine)
-var media; //l'objet media qui permet de lire la musique
-var mediaTimer = null;
-var playPause = false;
-var couleurPlayer = "royal"; //la
-var entries;
-//Constante
-
-
-
-angular.module('application').controller('MusicCtrl', function($scope,$ionicLoading) { //le module application et le controller musicCtrl
-
-
-
-
-      document.addEventListener("deviceready", init, false);
-
-
-
-      mp3Folder = "Music"; //Le dossier musique situé dans la carte sd  (a la a racine)
-      var result;
-
-
-      function init() { //fonction init
-
-
-        window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory + mp3Folder, //on va dans la carte sd
-          function(dir,mediaError) {
-            var reader = dir.createReader();
-            //lire
-
-            reader.readEntries(function(entries) {
-              console.log("readEntries");
-              console.dir(entries);
-
-
-              var tailleTableau = entries.length;
-              console.log("tailleTableau",tailleTableau);
-              var indice = 0;
-              console.log(indice,"indice");
-
-
-
-for (var i = 0; i < tailleTableau; i++) {
-  var m1 = new Musique(60,entries[i].name, entries[i].nativeURL,"cédric","nobé");
-
-
+//Variables globales
+var varmusique; // variable contenant l'objet Musique de la musique en cours
+var musiqueplaying; // Variable contenant l'objet Média de la musique
+var mp3Folder="Music"; //Le dossier qui va être analysé sur l'allapreil de l'utilisateur
+var entries;// Tableau qui va recueuillir les musiques de l'utilisateur
+var premiereutilisation=false;
+var playing=false; // Booléen qui révèle si une musique est en cours d'écoute, par défaut ce n'est pas le cas
+var timezik=0; // Temps en millisecondes de la musique jouée écoulé
+var intervalzik; // setInterval qui incrémente timezik tous les millièmes de secondes
+angular.module('application').controller('MusicCtrl', function($scope,$ionicLoading) {
+//le module application et le controller musicCtrl, actif globalement dans toutes les pages de l'application
+  document.addEventListener("deviceready", init, false); // On attend que le smartphone soit prêt
+  function init(){ //On lance init lorsqu'il est prêt
+    if(premiereutilisation==false){ // Lorsqu'on lance l'application, on va lire les musiques de l'utilisateur
+      premiereutilisation=true; // Cette fonction s'applique qu'une seule fois
+      window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory + mp3Folder, //on va dans la carte sd
+        function(dir,mediaError) {
+          var reader = dir.createReader(); // On crée un reader qui va lire les fichiers
+          reader.readEntries(function(entries) {   //lit tout le contenu du répertoire
+          for (var i = 0; i < entries.length; i++) { // tant que toutes les musiques n'ont pas été parcourues
+            var duree=0; // on définit plus tard la durée de la musique
+            var m1 = new Musique(duree,entries[i].name, entries[i].nativeURL,"","");
+            // on crée une nouvelle musique avec ses spécificités propres
+            m1.inputBD(); // on l'ajoute dans le localStorage
+        }
+      });
+    });
+  }
+  var m=new Musique();
+  var maxid=m.maxId();
+  var tab=m.recupTout();
+  $scope.listemusique = tab;  //liste les musiques
 }
 
 
-m1.inputBD();
-var m2 = new Musique();
-var m3 = m2.recupBD("m0");
-alert(m3.titre);
-$scope.couleur = couleurPlayer; //couleur du player
-//var pl1 = new Playlist("toto");
-//pl1.creaPlaylist(1,"vide", "vide","vide","vide", "vide", "vide","vide");
-//console.log("pl1",pl1);
-              //le player de fichier
+$scope.jouer = function(idmus) { //joue une musique sélectionnée
+  if(playing==false){
+    playing=true;
+  }
+  else{
+    musiqueplaying.stop();
+  }
+  document.addEventListener("deviceready", init, false);
+  function init(){
+    var m=new Musique();
+    var m2=m.recupBD(idmus);
+    varmusique=m2;
+    lien_en_cours=m2.url;
+    musiqueplaying = new Media(lien_en_cours);
+    changecolor(m2.emobulle);
+    musiqueplaying.play();
+    clearInterval(intervalzik);
+    timezik=0;
+    intervalzik=setInterval(function(){timezik=timezik+1.1;},10);
 
-
-              console.log(lien,"lien",nom_fichier,"fichier",indice,"indicedd");
-
-
-              //la methode qui permet de lire le fichier audio (play)
-
-                $scope.play = function() { //fonction play
-                lien =  entries[indice].nativeURL; //le lien du fichier audio dans la carte sd
-
-                media = new Media(lien, null, mediaError);
-//play audio
-media.play();
-
-
-
-            // Update my_media position every second
-            if (mediaTimer == null) {
-                mediaTimer = setInterval(function() {
-                    // get my_media position
-                    media.getCurrentPosition(
-
-                        // success callback
-                        function(position) {
-                            if (position > -1) {
-                              console.log(position,mediaTimer);
-                              setAudioPosition((position) + " sec");
-                            }
-                        },
-                        // error callback
-                        function(e) {
-                            console.log("Error getting pos=" + e);
-                            setAudioPosition("Error: " + e);
-                        }
-                    );
-                }, 1000);
-            }
-
-
-
-function affichelistemusique() {
-            $scope.listemusique = entries; //liste les musiques
-
-          }
-    affichelistemusique();
-
-
-
-
-
-          nom_fichier = entries[indice].name; //le nom du fichier audio
-          $scope.titre = nom_fichier; //copie le contenue de la variable nom_fichier dans un scope qui a pour nom titre
-
-
-
-              }
-              $scope.next = function() { //fonction suivant
-
-                media.stop();
-                $scope.play();
-                notification();
-                console.log("next",$scope.next,"indice",indice,"tailleTableau" ,tailleTableau,"nom_fichier",nom_fichier);
-
-
-
-                indice++;
-                if (indice > tailleTableau +1) {
-
-                  indice = 0;
-
-                }
-
-              }
-
-              $scope.previous = function() { //fonction precedent
-                media.pause();
-                $scope.play();
-                notification();
-
-
-                console.log("previous",$scope.previous,"indice",indice,"tailleTableau" ,tailleTableau);
-                indice--;
-
-                if (indice > tailleTableau -1) {
-
-
-
-                  indice = 0;
-                }
-              }
-
-              function notification() { //fonction qui lance une notification a chaque musique
-                //notification
-                document.addEventListener('deviceready', function () {
-                // Schedule notification for tomorrow to remember about the meeting
-                cordova.plugins.notification.local.schedule({
-
-                  title: "Nuance",
-                  message: nom_fichier,
-                  icon: 'http://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_circle_outline_48px-128.png',
-                })
-
-              });
-              }
-
-
-
-
-
-
-
-
-
-
-
-            });
-});
-
-
-
+  }
 
 }
+$scope.repeat = function() { //fonction precedent
+  musiqueplaying.stop();
+  clearInterval(intervalzik);
+  timezik=0;
+  musiqueplaying.play();
+  intervalzik=setInterval(function(){timezik=timezik+1;},10);
+  }
+$scope.playpause = function() { //fonction precedent
+  if(playing==true){
+    musiqueplaying.stop();
+    clearInterval(intervalzik);
+    var i=document.getElementById("playpause");
+    i.className="icon ion-pause";
+    playing=false;
+  }
+  else{
+    musiqueplaying.play();
+    musiqueplaying.seekTo(timezik*10);
+    intervalzik=setInterval(function(){timezik=timezik+1;},10);
+    playing=true;
+    var i=document.getElementById("playpause");
+    i.className="icon ion-play";
+  }
+}
+$scope.next = function() { //fonction suivant
+  clearInterval(intervalzik);
+  timezik=0;
+  var m=new Musique();
+  var max=m.maxId()+1;
+  musiqueplaying.stop();
+  var idmusact=varmusique.id;
+  var num=idmusact.substring(1,idmusact.length);
+  var id=parseInt(num);
+  id=id+1;
+  if(max==id){
+    id=0;
+  }
+  m=m.recupBD("m"+id);
+  varmusique=m;
+  changecolor(varmusique.emobulle);
+  lien_en_cours=m.url;
+  musiqueplaying = new Media(lien_en_cours);
+  musiqueplaying.play();
+}
+$scope.previous = function() { //fonction precedent
+  clearInterval(intervalzik);
+  timezik=0;
+  var m=new Musique();
+  var max=m.maxId();
+  musiqueplaying.stop();
+  var idmusact=varmusique.id;
+  var num=idmusact.substring(1,idmusact.length);
+  var id=parseInt(num);
+  id=id-1;
+  if(id<0){
+    id=max;
+  }
+  m=m.recupBD("m"+id);
+  varmusique=m;
+  changecolor(varmusique.emobulle);
+  lien_en_cours=m.url;
+  musiqueplaying = new Media(lien_en_cours);
+  musiqueplaying.play();
+}
+function changecolor(emobulle){
+  $("#auteur").html(varmusique.artiste);
+  $("#titre").html(varmusique.titre);
+  if(emobulle=="colere"){
+    $("i").css("color","#E6312F");
+$("#emo").attr("src","img/PNG/colere.png");}
+  if(emobulle=="espoir"){
+    $("i").css("color","#8DBF43");
+$("#emo").attr("src","img/PNG/espoir.png");}
+  if(emobulle=="joie"){
+    $("i").css("color","#FFCE0E");
+$("#emo").attr("src","img/PNG/joie.png");}
+  if(emobulle=="energie"){
+    $("i").css("color","#F28F1A");
+$("#emo").attr("src","img/PNG/energie.png");}
+  if(emobulle=="passion"){
+    $("i").css("color","#AD145A");
+$("#emo").attr("src","img/PNG/passion.png");}
+  if(emobulle=="melancolie"){
+    $("i").css("color","#654897");
+$("#emo").attr("src","img/PNG/melancolie.png");}
+  if(emobulle=="reve"){
+    $("i").css("color","#335CA7");
+$("#emo").attr("src","img/PNG/reve.png");}
+  if(emobulle=="calme"){
+    $("i").css("color","#44CDEF");
+$("#emo").attr("src","img/PNG/calme.png");}
+  if(emobulle=="tendresse"){
+    $("i").css("color","#E85D9D");
+$("#emo").attr("src","img/PNG/tendresse.png");}
+  if(emobulle=="tristesse"){
+    $("i").css("color","#707070");
+$("#emo").attr("src","img/PNG/tristesse.png");}
+  if(emobulle=="vide"){
+    $("i").css("color","#101010");
+$("#emo").attr("src","img/PNG/vide.png");}
+}
 
+function notification() { //fonction qui lance une notification a chaque musique
+  //notification
+  document.addEventListener('deviceready', function () {
+    // Schedule notification for tomorrow to remember about the meeting
+    cordova.plugins.notification.local.schedule({
+      title: "Nuance",
+      message: nom_fichier,
+      icon: 'http://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_play_circle_outline_48px-128.png',
+    });
 
-
-
+  });
+}
 });
-
 
 
 
 angular.module('application').controller('BarCtrl', function($cordovaStatusbar) {
 
   $cordovaStatusbar.overlaysWebView(true);
-
-  // styles: Default : 0, LightContent: 1, BlackTranslucent: 2, BlackOpaque: 3
   $cordovaStatusbar.style(1);
-
-  // supported names: black, darkGray, lightGray, white, gray, red, green,
-  // blue, cyan, yellow, magenta, orange, purple, brown
   $cordovaStatusbar.styleColor('white');
-
-  //$cordovaStatusbar.styleHex('#000');
-
-
   $cordovaStatusbar.show();
 
   var isVisible = $cordovaStatusbar.isVisible();
 
+});
+
+angular.module('application').controller('emobulles', function($scope,$ionicLoading) {
+  var m=new Musique();
+  var tab=m.recupTout();
+  $scope.listemusique = tab;
+$scope.changeEmo = function(id,emo) {
+$("#"+id).attr("src","img/PNG/"+emo+".png");
+var m=new Musique();
+var m1=m.recupBD(id);
+console.dir(m1);
+m.setEmo(m1,emo);
+}
 });
